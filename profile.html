@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kristal Profile Website</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.profile-card{
+    background:white;
+    width:350px;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    animation:fadeIn 1s ease;
+}
+
+.profile-pic{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #764ba2;
+    margin-bottom:20px;
+}
+
+h1{
+    color:#333;
+    margin-bottom:10px;
+}
+
+.title{
+    color:#764ba2;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.bio{
+    color:#666;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.buttons a{
+    display:block;
+    text-decoration:none;
+    background:#764ba2;
+    color:white;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.buttons a:hover{
+    background:#5a357c;
+    transform:scale(1.05);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="profile-card">
+
+    <img src="yourphoto.jpg" alt="Profile Picture" class="profile-pic">
+
+    <h1>Kristal Fado</h1>
+
+    <p class="title">BSIT Student | Future Developer</p>
+
+    <p class="bio">
+        Hello! I'm Kristal, an aspiring IT professional passionate about web development,
+        technology, and building useful systems for people.
+    </p>
+
+    <div class="buttons">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Email Me</a>
+    </div>
+
+</div>
+
+</body>
+</html>
