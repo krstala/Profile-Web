@@ -1,115 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kristal Profile Website</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kristal Maguan Fado | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-body{
-    background: linear-gradient(135deg,#667eea,#764ba2);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
-}
+  :root {
+    --rose: #c9788a;
+    --rose-light: #e8a8b5;
+    --rose-pale: #f5d5dc;
+    --rose-faint: #fceef1;
+    --dark-bg: #1a1218;
+    --dark-section: #211820;
+    --dark-card: #2a1f26;
+    --dark-mid: #3a2a35;
+    --text-main: #f0e6ea;
+    --text-muted: #c4a8b2;
+    --text-hint: #8a6a74;
+    --lavender-bg: #2e2840;
+    --lavender-accent: #a89ac8;
+  }
 
-.profile-card{
-    background:white;
-    width:350px;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
-    animation:fadeIn 1s ease;
-}
+  html { scroll-behavior: smooth; }
 
-.profile-pic{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    object-fit:cover;
-    border:5px solid #764ba2;
-    margin-bottom:20px;
-}
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark-bg);
+    color: var(--text-main);
+    line-height: 1.7;
+    font-size: 15px;
+  }
 
-h1{
-    color:#333;
-    margin-bottom:10px;
-}
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: flex-end; padding: 1rem 2rem;
+  }
+  .theme-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--dark-card); border: 1px solid rgba(201,120,138,0.3);
+    color: var(--rose-light); font-size: 16px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .theme-btn:hover { background: var(--dark-mid); }
 
-.title{
-    color:#764ba2;
-    font-weight:bold;
-    margin-bottom:15px;
-}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2d1520 0%, #1a1218 40%, #231822 100%);
+    display: flex; align-items: center;
+    padding: 5rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -100px; left: -100px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,120,138,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto; width: 100%;
+    display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .hero-text { flex: 1; min-width: 280px; }
+  .hero-greeting {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 400; line-height: 1.2;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    color: var(--text-muted); font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .hero-contacts {
+    display: flex; flex-direction: column; gap: 0.3rem;
+    margin-bottom: 2rem;
+  }
+  .hero-contacts span {
+    font-size: 0.88rem; color: var(--text-hint);
+  }
+  .hero-contacts span strong { color: var(--rose-light); }
+  .btn-primary {
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid var(--rose);
+    color: var(--rose-light);
+    padding: 0.65rem 1.8rem;
+    border-radius: 30px;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover {
+    background: rgba(201,120,138,0.15);
+  }
+  .hero-img-wrap {
+    width: 240px; height: 280px; flex-shrink: 0;
+    border-radius: 20px;
+    background: var(--dark-card);
+    border: 1.5px solid rgba(201,120,138,0.25);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .hero-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top;
+  }
+  .hero-img-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text-hint); font-size: 0.8rem; text-align: center; padding: 1rem;
+  }
+  .hero-img-placeholder .avatar-circle {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--dark-mid);
+    border: 2px solid rgba(201,120,138,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--rose-light);
+  }
 
-.bio{
-    color:#666;
-    margin-bottom:20px;
-    line-height:1.5;
-}
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 400; text-align: center;
+    color: var(--text-main); margin-bottom: 0.5rem;
+  }
+  .section-divider {
+    width: 40px; height: 2px; background: var(--rose);
+    margin: 0 auto 3rem;
+  }
 
-.buttons a{
-    display:block;
-    text-decoration:none;
-    background:#764ba2;
-    color:white;
-    padding:12px;
-    margin:10px 0;
-    border-radius:10px;
-    transition:0.3s;
-    font-weight:bold;
-}
+  /* OBJECTIVE */
+  .objective { background: var(--dark-section); }
+  .objective-text {
+    max-width: 720px; margin: 0 auto;
+    text-align: center; color: var(--text-muted);
+    font-size: 1rem; line-height: 1.9;
+    font-style: italic;
+  }
 
-.buttons a:hover{
-    background:#5a357c;
-    transform:scale(1.05);
-}
+  /* ABOUT */
+  .about { background: var(--dark-bg); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .about-card {
+    background: var(--dark-card);
+    border: 0.5px solid rgba(201,120,138,0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .about-card-label {
+    font-size: 0.8rem; color: var(--rose-light);
+    margin-bottom: 0.4rem; font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .about-card-val {
+    font-size: 0.95rem; color: var(--text-main);
+  }
 
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+  /* EDUCATION */
+  .education { background: var(--dark-section); }
+  .edu-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .edu-item {
+    background: var(--dark-card);
+    border-left: 3px solid var(--rose);
+    border-radius: 0 12px 12px 0;
+    padding: 1.2rem 1.5rem;
+  }
+  .edu-degree { font-weight: 500; color: var(--text-main); font-size: 1rem; }
+  .edu-school { color: var(--rose-light); font-size: 0.9rem; margin-top: 2px; }
+  .edu-year { color: var(--text-hint); font-size: 0.82rem; margin-top: 4px; }
+
+  /* EXPERIENCE */
+  .experience { background: var(--dark-bg); }
+  .exp-card {
+    background: var(--dark-card);
+    border: 0.5px solid rgba(201,120,138,0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 760px; margin: 0 auto;
+  }
+  .exp-role { font-weight: 600; color: var(--rose-light); font-size: 1.05rem; }
+  .exp-org { color: var(--text-muted); font-size: 0.9rem; margin: 4px 0 1rem; }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .exp-list li {
+    padding-left: 1.2rem; position: relative;
+    color: var(--text-muted); font-size: 0.92rem;
+  }
+  .exp-list li::before {
+    content: ''; position: absolute; left: 0; top: 10px;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--rose);
+  }
+
+  /* SKILLS */
+  .skills-sec { background: var(--lavender-bg); }
+  .skills-sub {
+    text-align: center; color: var(--lavender-accent);
+    font-size: 0.95rem; margin-bottom: 2.5rem;
+  }
+  .skills-chips {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  }
+  .chip {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(168,154,200,0.35);
+    border-radius: 30px;
+    background: rgba(168,154,200,0.08);
+    color: var(--lavender-accent);
+    font-size: 0.88rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .chip-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--lavender-accent); flex-shrink: 0;
+  }
+
+  /* PROJECTS */
+  .projects { background: var(--dark-section); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--dark-card);
+    border: 0.5px solid rgba(201,120,138,0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .project-tag {
+    font-size: 0.75rem; color: var(--rose);
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-bottom: 0.5rem;
+  }
+  .project-name { font-weight: 500; font-size: 1rem; color: var(--text-main); margin-bottom: 0.6rem; }
+  .project-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
+
+  /* CONTACT */
+  .contact {
+    background: linear-gradient(180deg, var(--dark-bg) 0%, #2d1a24 100%);
+    text-align: center;
+  }
+  .contact-sub {
+    color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2.5rem;
+  }
+  .contact-form {
+    max-width: 560px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .form-row { display: flex; gap: 1rem; }
+  .form-row input { flex: 1; }
+  input, textarea {
+    background: var(--dark-card);
+    border: 0.5px solid rgba(201,120,138,0.25);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    color: var(--text-main); font-family: inherit; font-size: 0.9rem;
+    outline: none; width: 100%;
+    transition: border-color 0.2s;
+  }
+  input::placeholder, textarea::placeholder { color: var(--text-hint); }
+  input:focus, textarea:focus { border-color: var(--rose); }
+  textarea { resize: vertical; min-height: 110px; }
+  .btn-send {
+    background: var(--rose);
+    border: none; border-radius: 10px;
+    padding: 0.85rem;
+    color: #fff; font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+    font-family: inherit;
+  }
+  .btn-send:hover { background: #b86678; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-section);
+    text-align: center; padding: 2rem;
+  }
+  .footer-made {
+    font-size: 0.82rem; color: var(--text-hint);
+  }
+  .footer-made strong { color: var(--rose-light); }
+
+  @media (max-width: 600px) {
+    .hero-inner { flex-direction: column-reverse; align-items: flex-start; }
+    .hero-img-wrap { width: 160px; height: 180px; }
+    .form-row { flex-direction: column; }
+  }
 </style>
-
 </head>
 <body>
 
-<div class="profile-card">
+<nav>
+  <button class="theme-btn" title="Toggle theme" onclick="alert('You can add dark/light toggle here!')">🌙</button>
+</nav>
 
-    <img src="JAZ_0128.jpg" alt="Profile Picture" class="profile-pic">
-
-    <h1>Kristal Fado</h1>
-
-    <p class="title">BSIT Student | Future Developer</p>
-
-    <p class="bio">
-        Hello! I'm Kristal, an aspiring IT professional passionate about web development,
-        technology, and building useful systems for people.
-    </p>
-
-    <div class="buttons">
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Email Me</a>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-greeting">Hi there, I'm<br>Kristal Fado</h1>
+      <p class="hero-sub">IT Student & Aspiring Web Developer</p>
+      <div class="hero-contacts">
+        <span>📍 <strong>Tboli, South Cotabato</strong></span>
+        <span>📞 <strong>09097361200</strong></span>
+        <span>📧 <strong>fadokristal05@gmail.com</strong></span>
+      </div>
+      <a href="#projects" class="btn-primary">Discover My Work</a>
     </div>
+    <div class="hero-img-wrap">
+      <div class="hero-img-placeholder">
+        <div class="avatar-circle">KF</div>
+        <span>Replace with your photo<br>(JAZ_0128.jpg)</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- OBJECTIVE -->
+<section class="objective" id="about">
+  <div class="container">
+    <h2 class="section-title">Objective</h2>
+    <div class="section-divider"></div>
+    <p class="objective-text">
+      Motivated and dedicated graduating Bachelor of Science in Information Technology student seeking an entry-level position where I can apply my technical knowledge, communication skills, and willingness to learn in contributing to the success of the company. Eager to gain professional experience and grow within the organization.
+    </p>
+  </div>
+</section>
+
+<!-- PERSONAL INFO -->
+<section class="about">
+  <div class="container">
+    <h2 class="section-title">Personal Information</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-label">Full Name</div>
+        <div class="about-card-val">Kristal Maguan Fado</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Date of Birth</div>
+        <div class="about-card-val">August 28, 2002</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Age</div>
+        <div class="about-card-val">23 years old</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Nationality</div>
+        <div class="about-card-val">Filipino</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Civil Status</div>
+        <div class="about-card-val">Single</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="section-divider"></div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div class="edu-degree">Bachelor of Science in Information Technology</div>
+        <div class="edu-school">STI College Koronadal</div>
+        <div class="edu-year">Expected Graduation: Last Week of June 2026</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">Senior High School</div>
+        <div class="edu-school">Tboli National High School</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="container">
+    <h2 class="section-title">Work / Internship Experience</h2>
+    <div class="section-divider"></div>
+    <div class="exp-card">
+      <div class="exp-role">On-the-Job Training Intern</div>
+      <div class="exp-org">Department of Education &nbsp;·&nbsp; Present</div>
+      <ul class="exp-list">
+        <li>Assisted in office administrative tasks and documentation</li>
+        <li>Organized and managed records and files efficiently</li>
+        <li>Provided technical support for computer-related concerns</li>
+        <li>Assisted staff with data entry</li>
+        <li>Maintained professionalism while handling office responsibilities</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-sec" id="skills">
+  <div class="container">
+    <h2 class="section-title" style="color: #e8e0f5;">Skills</h2>
+    <div class="section-divider" style="background: var(--lavender-accent);"></div>
+    <p class="skills-sub">My toolkit for crafting thoughtful digital solutions.</p>
+    <div class="skills-chips">
+      <div class="chip"><span class="chip-dot"></span>Basic Computer Troubleshooting</div>
+      <div class="chip"><span class="chip-dot"></span>Microsoft Office</div>
+      <div class="chip"><span class="chip-dot"></span>Word, Excel, PowerPoint</div>
+      <div class="chip"><span class="chip-dot"></span>Basic Programming</div>
+      <div class="chip"><span class="chip-dot"></span>HTML & CSS</div>
+      <div class="chip"><span class="chip-dot"></span>Good Communication</div>
+      <div class="chip"><span class="chip-dot"></span>Fast Learner</div>
+      <div class="chip"><span class="chip-dot"></span>Adaptable</div>
+      <div class="chip"><span class="chip-dot"></span>Teamwork & Collaboration</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+    <div class="section-divider"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-tag">Capstone Project</div>
+        <div class="project-name">Jeongo Izakaya Web Based Management System</div>
+        <div class="project-desc">
+          A Sangyupsal Restaurant Management System to help the resto manage efficiently — from taking orders, table management, to sales reporting.
+        </div>
+        <div style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-hint);">
+          Tools: HTML, CSS, Web Technologies
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="section-divider"></div>
+    <p class="contact-sub">
+      Drop a message and let's grow together 🌸<br>
+      <strong style="color: var(--rose-light);">fadokristal05@gmail.com</strong> &nbsp;·&nbsp;
+      <span style="color: var(--text-muted);">Tboli, South Cotabato</span>
+    </p>
+    <div class="contact-form">
+      <div class="form-row">
+        <input type="text" placeholder="Your Name" />
+        <input type="email" placeholder="Your Email" />
+      </div>
+      <textarea placeholder="Your Message"></textarea>
+      <button class="btn-send">Send a Message 🌷</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-made">Made with sunshine by <strong>Kristal Fado</strong> &nbsp;·&nbsp; © 2025</p>
+</footer>
 
 </body>
 </html>
